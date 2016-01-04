@@ -159,7 +159,7 @@ class: center, middle, inverse
 
 .left-column[
 
-+ Fedoraproject.org developer (Cloud WG)
++ Fedora developer (FESCo, Cloud WG)
 
 + CentOS developer (Cloud SIG/OpenStack)
 
@@ -267,10 +267,12 @@ class: middle
   + Fedora 20 includes OpenStack Havana
   + Fedora 21 includes OpenStack Icehouse
   + Fedora 22 includes OpenStack Juno
-  + Fedora 23 will include OpenStack Kilo
+  + Fedora 23 includes OpenStack Kilo
+  + Starting Fedora 24/Liberty, we only support Delorean builds for Fedora
 
 [1]: http://pkgs.fedoraproject.org/cgit/openstack-nova.git/commit/?id=430fcdb4f519438525bc3bbccc6480dcbce8bfd8
 [2]: https://fedoraproject.org/wiki/OpenStack#OpenStack
+[3]: http://trunk.rdoproject.org/
 
 ---
 class: middle
@@ -282,6 +284,7 @@ class: middle
 * incompatible Folsom update in October 2012 [2] sparked conversations
 leading to the creation of RDO [3]
 * RDO started with Grizzly in April 2013
+* Since september, 2014 part of the CentOS Cloud SIG
 
 [1]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-5719
 [2]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-13088
@@ -296,21 +299,19 @@ class: middle, inverse, center
 ---
 class: middle
 
-## Multiple Targets
+## Targets
 
-* RHEL/CentOS 7 (starting Kilo)
-* RHEL/CentOS 6 (clients only)
-* All currently supported Fedora (+ Rawhide of course)
+* Focusing on RHEL/CentOS 7 (starting Kilo)
+* Fedora supported through Delorean
 
 ---
 class: middle
 
 ## Multiple Releases
 
-* Icehouse/2014.1.3 (EOL) => april 2014
-* Juno/2014.2.x (previous stable) => october 2014
-* Kilo (current stable) => may 2015
-* Liberty (master)
+* Kilo (previous stable) => may 2015
+* Liberty (current stable) => october 2015
+* Mitaka (master)
 
 ---
 class: middle
@@ -335,13 +336,12 @@ class: middle
 
 ## Git
 
-* Currently hosted on Fedora dist-git
+* Currently hosted on @openstack-packages github organization
 * A single spec per release on one branch
-  + master (F23) => Kilo
-  + F22 => Juno
-  + F21 => Icehouse
+  + rpm-master => Delorean (Mitaka)
+  + rpm-liberty => Delorean (Liberty)
+  + rdo-liberty => CentOS/RHEL (Liberty)
 * Same spec is used to be built on multiple targets
-* Trunk aka Liberty is a special case. Specs lives there: https://github.com/openstack-packages/
 
 ---
 class: middle
