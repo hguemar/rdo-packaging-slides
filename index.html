@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>OpenStack Packaging for Fedora & CentOS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+      @font-face {
+      font-family: 'Droid Serif';
+      src: url('font/DroidSerif.ttf');
+      }
+
+      @font-face {
+      font-family: 'Yanone Kaffeesatz';
+      src: url('font/YanoneKaffeesatz-Regular.otf');
+      }
+
+      body {
+      font-family: 'Droid Serif';
+      font-size: 20px;
+      }
+      h1, h2, h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: 400;
+      margin-bottom: 0;
+      }
+      h1 { font-size: 4em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.6em; }
+      .footnote {
+      position: absolute;
+      bottom: 3em;
+      right: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .blue { color: #1437AD; }
+      .large { font-size: 2em; }
+      a, a > code {
+      color: rgb(24, 138, 114);
+      text-decoration: none;
+      }
+      code {
+      -moz-border-radius: 5px;
+      -web-border-radius: 5px;
+      background: #e7e8e2;
+      border-radius: 5px;
+      font-size: 16px;
+      }
+      .pull-left {
+      float: left;
+      width: 47%;
+      }
+      .pull-right {
+      float: right;
+      width: 47%;
+      }
+      .pull-right ~ p {
+      clear: both;
+      }
+      #slideshow .slide .content code {
+      font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+      font-size: 0.9em;
+      padding: 15px;
+      }
+      .inverse {
+      background: #272822;
+      color: #777872;
+      text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+      color: #f3f3f3;
+      line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+      bottom: 12px;
+      left: 20px;
+      }
+      #slide-how .slides {
+      font-size: 0.9em;
+      position: absolute;
+      top:  151px;
+      right: 140px;
+      }
+      #slide-how .slides h3 {
+      margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+      padding: 1px 20px;
+      height: 90px;
+      width: 120px;
+      -moz-box-shadow: 0 0 10px #777;
+      -webkit-box-shadow: 0 0 10px #777;
+      box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+      background: #fff;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      z-index: 1;
+      }
+      #slide-how .slides .second {
+      position: relative;
+      background: #fff;
+      z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+      //color: #777;
+      width: 60%;
+      height: 92%;
+      float: left;
+      }
+      .left-column h2:last-of-type, .left-column h3:last-child {
+      color: #000;
+      }
+      .right-column {
+      width: 40%;
+      float: right;
+      padding-top: 2em;
+      }
+
+      .left-50column {
+      color: #1212fa;
+      width: 48%;
+      height: 92%;
+      float: left;
+      }
+
+      .right-50column {
+      color: #fa1212;
+      width: 48%;
+      height: 92%;
+      float: right;
+      }
+
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, inverse
+
+# OpenStack Packaging for Fedora & CentOS
+
+## Haïkel Guémar - @hguemar
+
+---
+## whoami
+
+.right-column[
+<img src="img/me.jpeg" />
+]
+
+.left-column[
+
++ Fedoraproject.org developer (Cloud WG)
+
++ CentOS developer (Cloud SIG/OpenStack)
+
++ OpenStack ATC
+
++ RDO Engineering @ Red Hat
+
+]
+
+---
+class: center, middle, inverse
+
+# Introduction
+
+---
+class: middle
+
+## What's OpenStack ?
+
+OpenStack is an open source platform that lets you build an Infrastructure as a Service (IaaS)
+cloud that runs on commodity hardware
+
+![overview](img/openstack-software-diagram.png)
+
+http://openstack.org
+
+---
+class: middle
+
+## OpenStack is really ...
+
+<img src="img/openstack-full-architecture.png" width="90%" />
+
+
+---
+class: middle
+
+## What's RDO
+
+RDO is a freely-available and community supported distribution of
+OpenStack packaged and integrated for RHEL, CentOS and Fedora.
+
+<img src="img/RDO-logo.jpg" width="40%" />
+
+http://rdoproject.org
+
+---
+class: middle
+
+## What's RDO
+
+* OpenStack packages
+* An installer: packstack
+* A deployment & management tool: RDO Manager
+* __MOST IMPORTANT: A COMMUNITY__
+
+---
+class: middle
+
+## Packstack
+
+* Fast & simple deployment tool of OpenStack
+* Handle single-node/multi-nodes configuration
+* Aims at small PoCs
+* Built on Puppet
+
+<img src="img/Puppet_Labs_Logo.png"  width="40%"/>
+
+---
+class: middle
+
+## RDO Manager
+
+* Deployment & management console
+* Built on Triple O (and inspired by enovance SpinalStack)
+* Leverage OpenStack API
+
+![](img/rdo-manager-logo.png)
+
+[RDO Manager documentation](https://repos.fedorapeople.org/repos/openstack-m/docs/master/)
+
+[RDO Manager at Vancouver Summit](http://youtu.be/731INn1GDmk)
+
+---
+class: middle
+
+## What's Triple O ?
+
+* Undercloud (management node)
+* Overcloud (deployed cloud)
+
+![](img/tripleo.svg)
+
+---
+class: middle
+
+## History - OpenStack in Fedora
+
+* openstack-nova Diablo imported to Fedora 16 in August 2011 [1]
+* Until now we were able to keep Fedora/OpenStack release 1:1 [2]
+  + Fedora 16 includes OpenStack Diablo
+  + Fedora 17 includes OpenStack Essex
+  + Fedora 18 includes OpenStack Folsom
+  + Fedora 19 includes OpenStack Grizzly
+  + Fedora 20 includes OpenStack Havana
+  + Fedora 21 includes OpenStack Icehouse
+  + Fedora 22 includes OpenStack Juno
+  + Fedora 23 will include OpenStack Kilo
+
+[1]: http://pkgs.fedoraproject.org/cgit/openstack-nova.git/commit/?id=430fcdb4f519438525bc3bbccc6480dcbce8bfd8
+[2]: https://fedoraproject.org/wiki/OpenStack#OpenStack
+
+---
+class: middle
+
+## History - OpenStack in RHEL/CentOS
+
+* Nova added to EPEL6 in November 2011
+* complete Essex update in April 2012 [1]
+* incompatible Folsom update in October 2012 [2] sparked conversations
+leading to the creation of RDO [3]
+* RDO started with Grizzly in April 2013
+
+[1]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-5719
+[2]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-13088
+[3]: https://openstack.redhat.com/
+
+
+---
+class: middle, inverse, center
+
+# OpenStack Packaging Challenges
+
+---
+class: middle
+
+## Multiple Targets
+
+* RHEL/CentOS 7 (starting Kilo)
+* RHEL/CentOS 6 (clients only)
+* All currently supported Fedora (+ Rawhide of course)
+
+---
+class: middle
+
+## Multiple Releases
+
+* Icehouse/2014.1.3 (EOL) => april 2014
+* Juno/2014.2.x (previous stable) => october 2014
+* Kilo (current stable) => may 2015
+* Liberty (master)
+
+---
+class: middle
+
+## Many packages
+
+For instance CentOS 7 Juno
+
+* 641 binary packages for CentOS
+* 282 source packages
+* 207 python packages
+* 101 source packages for openstack services
+* 17 source packages for openstack clients
+
+---
+class: middle, inverse, center
+
+# The Setup
+
+---
+class: middle
+
+## Git
+
+* Currently hosted on Fedora dist-git
+* A single spec per release on one branch
+  + master (F23) => Kilo
+  + F22 => Juno
+  + F21 => Icehouse
+* Same spec is used to be built on multiple targets
+* Trunk aka Liberty is a special case. Specs lives there: https://github.com/openstack-packages/
+
+---
+class: middle
+
+## Buildsystem Setup
+
+* RDO Fedora is built in Koji, Fedora N+1 builds are made available
+for Fedora N *e.g. RDO Kilo for Fedora 22 are Fedora 23 builds*
+* RDO EL is built in CBS and is self-sufficient starting Kilo
+
+---
+class: middle
+
+## Packaging/Patches review
+
+* Using gerrit like OpenStack upstream
+* Patches and packaging changes runs through a review
+* Updates are submitted through a simple YAML file
+* [Hosted on gerrithub](https://review.gerrithub.io/#/q/project:openstack-packages)
+* Trigger a serie of CI jobs
+
+---
+class: middle
+
+## Continuous Integration
+
+* Phase1
+
+Install packages from update YAML on the snapshot image with
+the all-in-one OpenStack installation, starts services and runs
+Tempest smoketest. Tests basic package sanity and upgrade.
+
+* Phase2
+
+Runs from-the-scratch all-in-one installation with all the packages
+which passed Phase1. Tests package interaction among queued updates.
+
+  + stage daily jobs and on-demand before pushing queued updates list
+  +  production daily job to catch regressions in dependency changes
+
+=> Moved to ci.centos.org
+
+* [Repository level testing from Cloud SIG](https://ci.centos.org/job/cloud-sig-validate-packstack-rdo-kilo-testing_tag/)
+
+
+---
+class: middle
+
+## Back to the future !
+
+<img src="img/delorean.jpg" width="80%" />
+
+---
+class: middle
+
+## Delorean
+
+Tracks upstream master (currently Liberty) and stable branches now.
+
+Breaks when upstream change requires packaging changes and alerts package owners as defined in [rdoinfo](https://github.com/redhat-openstack/rdoinfo)
+
+Going forward, all packaging changes will be done in Delorean packages first, and merged to stable packaging branches
+[How to add a package in RDO master](https://openstack.redhat.com/packaging/rdo-packaging.html#_how_to_add_a_new_package_to_rdo_master_packaging)
+[Delorean FAQ](https://etherpad.openstack.org/p/delorean-packages)
+
+---
+class: middle
+
+## rdopkg: swiss army knife for RDO packaging
+
+* Automate most of the annoyances
+* Rebase/Updating patches/Submit updates etc.
+
+[Available here](https://copr.fedoraproject.org/coprs/jruzicka/rdopkg/)
+
+---
+class: middle, center, inverse
+
+# RDO Status
+
+---
+class: middle
+
+## Opening up the technical governance
+
+* Public infrastructure => reviewing system, CI (WiP)
+* Weekly IRC meetings on freenode ([agenda](https://etherpad.openstack.org/p/RDO-Packaging))
+* Creation of RDO Eng. team to support and foster contributions (ping apevec or hguemar to get
+started!)
+* __RDO Eng. is the only team that has no internal meetings, all in the open!__
+* Open roadmap ([RDO public trello](https://trello.com/b/HhXlqdiu/rdo))
+
+---
+class: middle
+
+## Why?
+
+* RDO has been founded as a self-supporting community distribution of OpenStack for Fedora/RHEL ecosystem
+* Enable community contributors collaboration
+* Allow community to choose the direction of the project
+
+---
+class: middle
+
+## A lot more contributions from non-redhatters
+
+Juno highlights:
+
+* Juno/EL6 builds thanks to Thomas Oulevey (CERN)
+* Barbican packages thanks to Greg Swift (Rackspace)
+* GBP packages thanks to Robert Kukura (Cisco)
+
+---
+class: middle
+
+## RDO 💓 CentOS
+
+* RDO starting Kilo is fully built on CBS
+* One of the first usable product by a SIG
+* Considering moving more bits of RDO infrastructure over CentOS
+
+---
+class: middle
+
+## RDO mid-cycle meetup
+
+* Full day meetup during FOSDEM
+* Co-located with FOSDEM CentOS dojo
+* Discussion on planning and future organization
+
+---
+class: middle
+
+## Big tent plans
+
+* A lot of interests in maintaining non-core projects in RDO
+* RDO Eng. will be supporting community efforts as long as there is commitment
+* Note that won't impact RHOSP
+
+[Projects in RDO list](https://www.rdoproject.org/ProjectsInRDO)
+
+---
+class: middle
+
+## Packaging as an upstream project
+
+* [Proposal cooked up at Vancouver Summit](https://review.openstack.org/#/c/185187/)
+* We're 100% behind it
+* Currently discussing with Suse guys on how we could converge RPM packaging
+* Not a disruptive change to us as we've been working on two releases using a very
+similar workflow (delorean + gerrithub)
+
+---
+class: middle
+
+## No stable point-releases
+
+* Upstream will stand behind stable branches ensuring that every commit is production-ready
+* Allow more frequent bugfix and CVE releases in RDO
+* Still need to figure out details (tarballs & changelog)
+
+---
+class: middle
+
+## Operational tools
+
+* Bringing mature and advanced operational tools to RDO
+  + Centralised Logging
+  + Performance Monitoring
+  + Availability Monitoring
+* Led by Graeme Gillies
+
+[Discussion on RDO list](https://www.redhat.com/archives/rdo-list/2015-June/msg00051.html)
+
+---
+class: middle
+
+## OPNFV
+
+* CentOS OPNFV SIG 
+* Build a vanilla OPNFV platform based on OpenStack + OpenDaylight (ODL)
+* First release based w/ RDO and Foreman installer coming soon
+* CI + functional testing in progress
+* Ping Dan Radez if you want to get involved
+
+---
+class: middle
+
+## Khaleesi
+
+* Ansible framework to setup OpenStack test environment
+* Used by RDO and RHOSP CI
+* Rewritten to be reusable by everyone
+
+[Khaleesi](https://github.com/redhat-openstack/khaleesi)
+
+---
+class: middle
+
+## Trystack
+
+* Public RDO cloud available to try out OpenStack (backed by the Foundation)
+* Kilo migration: WiP
+* Kilo version will include Manila + Trove
+* RDO CI runs over Juno
+* Recruiting more operators to manage this effort!
+
+---
+class: middle
+
+## New RDO portal
+
+
+---
+class: middle, center, inverse
+
+# Contributing to RDO
+
+---
+class: middle
+
+## RDO packaging documentation
+
+[documentation](https://openstack.redhat.com/packaging/rdo-packaging.html)
+
+[sources](http://github.com/redhat-openstack) <= Pull Requests are welcome!
+
+---
+class: middle
+
+## Communication channels
+
+* mailing-list: http://www.redhat.com/mailman/listinfo/rdo-list
+* IRC: #rdo @freenode
+
+
+---
+class: middle, center, inverse
+
+# Q/A
+
+    </textarea>
+    <script src="remark.min.js" type="text/javascript">
+    </script>
+    <script type="text/javascript">
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
