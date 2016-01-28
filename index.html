@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>OpenStack Packaging for Fedora & CentOS</title>
+    <title>How to contribute to RDO</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
       @font-face {
@@ -144,7 +144,7 @@
 
 class: center, middle, inverse
 
-# OpenStack Packaging for Fedora & CentOS
+# How to contribute to RDO
 
 
 ## Alan Pevec - @apevec_
@@ -175,26 +175,6 @@ class: center, middle, inverse
 ---
 class: middle
 
-## What's OpenStack ?
-
-OpenStack is an open source platform that lets you build an Infrastructure as a Service (IaaS)
-cloud that runs on commodity hardware
-
-![overview](img/openstack-software-diagram.png)
-
-http://openstack.org
-
----
-class: middle
-
-## OpenStack is really ...
-
-<img src="img/openstack-full-architecture.png" width="90%" />
-
-
----
-class: middle
-
 ## What's RDO
 
 RDO is a freely-available and community supported distribution of
@@ -213,43 +193,6 @@ class: middle
 * An installer: packstack
 * A deployment & management tool: RDO Manager
 * __MOST IMPORTANT: A COMMUNITY__
-
----
-class: middle
-
-## Packstack
-
-* Fast & simple deployment tool of OpenStack
-* Handle single-node/multi-nodes configuration
-* Aims at small PoCs
-* Built on Puppet
-
-<img src="img/Puppet_Labs_Logo.png"  width="40%"/>
-
----
-class: middle
-
-## RDO Manager
-
-* Deployment & management console
-* Built on Triple O (and inspired by enovance SpinalStack)
-* Leverage OpenStack API
-
-![](img/rdo-manager-logo.png)
-
-[RDO Manager documentation](https://repos.fedorapeople.org/repos/openstack-m/docs/master/)
-
-[RDO Manager at Vancouver Summit](http://youtu.be/731INn1GDmk)
-
----
-class: middle
-
-## What's Triple O ?
-
-* Undercloud (management node)
-* Overcloud (deployed cloud)
-
-![](img/tripleo.svg)
 
 ---
 class: middle
@@ -275,7 +218,7 @@ class: middle
 ---
 class: middle
 
-## History - OpenStack in RHEL/CentOS
+## History - OpenStack in CentOS/RHEL
 
 * Nova added to EPEL6 in November 2011
 * complete Essex update in April 2012 [1]
@@ -346,9 +289,8 @@ class: middle
 
 ## Buildsystem Setup
 
-* RDO Fedora is built in Koji, Fedora N+1 builds are made available
-for Fedora N *e.g. RDO Kilo for Fedora 22 are Fedora 23 builds*
-* RDO EL is built in CBS and is self-sufficient starting Kilo
+* RDO for CentOS/RHEL is built in CBS and is self-sufficient starting Kilo
+* Delorean builds use mock
 
 ---
 class: middle
