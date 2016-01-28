@@ -304,33 +304,7 @@ class: middle
 
 * Using gerrit like OpenStack upstream
 * Patches and packaging changes runs through a review
-* Updates are submitted through a simple YAML file
 * [Hosted on gerrithub](https://review.gerrithub.io/#/q/project:openstack-packages)
-* Trigger a serie of CI jobs
-
----
-class: middle
-
-## Continuous Integration
-
-* Phase1
-
-Install packages from update YAML on the snapshot image with
-the all-in-one OpenStack installation, starts services and runs
-Tempest smoketest. Tests basic package sanity and upgrade.
-
-* Phase2
-
-Runs from-the-scratch all-in-one installation with all the packages
-which passed Phase1. Tests package interaction among queued updates.
-
-  + stage daily jobs and on-demand before pushing queued updates list
-  +  production daily job to catch regressions in dependency changes
-
-=> Moved to ci.centos.org
-
-* [Repository level testing from Cloud SIG](https://ci.centos.org/job/cloud-sig-validate-packstack-rdo-kilo-testing_tag/)
-
 
 ---
 class: middle
@@ -344,7 +318,7 @@ class: middle
 
 ## Delorean
 
-Tracks upstream master (currently Liberty) and stable branches now.
+Tracks upstream master (currently Mitaka) and stable branches now.
 
 Breaks when upstream change requires packaging changes and alerts package owners as defined in [rdoinfo](https://github.com/redhat-openstack/rdoinfo)
 
@@ -442,11 +416,10 @@ similar workflow (delorean + gerrithub)
 ---
 class: middle
 
-## No stable point-releases
+## Time-based stable point-releases starting Liberty
 
-* Upstream will stand behind stable branches ensuring that every commit is production-ready
+* Each project creates a release when there are enough stable backports
 * Allow more frequent bugfix and CVE releases in RDO
-* Still need to figure out details (tarballs & changelog)
 
 ---
 class: middle
@@ -475,17 +448,6 @@ class: middle
 ---
 class: middle
 
-## Khaleesi
-
-* Ansible framework to setup OpenStack test environment
-* Used by RDO and RHOSP CI
-* Rewritten to be reusable by everyone
-
-[Khaleesi](https://github.com/redhat-openstack/khaleesi)
-
----
-class: middle
-
 ## Trystack
 
 * Public RDO cloud available to try out OpenStack (backed by the Foundation)
@@ -497,7 +459,9 @@ class: middle
 ---
 class: middle
 
-## New RDO portal
+## New RDO website
+
+* "Edit on Github" !
 
 
 ---
@@ -512,7 +476,7 @@ class: middle
 
 [documentation](https://openstack.redhat.com/packaging/rdo-packaging.html)
 
-[sources](http://github.com/redhat-openstack) <= Pull Requests are welcome!
+WIP convert to Markdown and move to redhat-openstack/website
 
 ---
 class: middle
