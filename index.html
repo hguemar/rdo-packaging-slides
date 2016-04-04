@@ -441,28 +441,31 @@ class: middle
 * Goal is to improve coverage upon what upstream provides.
 
 ```bash
-                       +-------------+      +------------------------+   +----------------+
-                       |             |      |                        |   |                |
-           WeIRDO      |  Provision  |      |  Install dependencies  |   |  run_tests.sh  |
-       (with Ansible)  |  test node  +------>   & patch assumptions  +--->     or tox     |
-                       |             |      |                        |   |                |
-                       +-------------+      +------------------------+   +----------------+
+         +------------+      +-----------------------+   +---------------+
+         |            |      |                       |   |               |
+WeIRDO   | Provision  |      | Install dependencies  |   | run_tests.sh  |
+[1]      | test node  +------>  & patch assumptions  +--->    or tox     |
+         |            |      |                       |   |               |
+         +------------+      +-----------------------+   +---------------+
 
 
-                       +----------------+   +---------------------+      +-----------------+
-                       |                |   |                     |      |                 |
- run_tests.sh or tox   |    Install     |   |  Install/Configure  |      |      Test       |
-(provided by project)  |  dependencies  +--->      OpenStack      +------>  (ex: Tempest)  |
-                       |                |   |                     |      |                 |
-                       +----------------+   +---------------------+      +-----------------+
+         +---------------+   +--------------------+      +----------------+
+         |               |   |                    |      |                |
+tox      |   Install     |   | Install/Configure  |      |     Test       |
+[2]      | dependencies  +--->     OpenStack      +------> (e.g. Tempest) |
+         |               |   |                    |      |                |
+         +---------------+   +--------------------+      +----------------+
 
 
-                       +----------------+   +-------------+
-                       |                |   |             |
-           WeIRDO      |  Recover logs  |   |   Destroy   |
-       (with Ansible)  |   and results  +--->  test node  |
-                       |                |   |             |
-                       +----------------+   +-------------+
+         +---------------+   +------------+
+         |               |   |            |
+WeIRDO   | Recover logs  |   |  Destroy   |
+[1]      |  and results  +---> test node  |
+         |               |   |            |
+         +---------------+   +------------+
+
+1. with Ansible
+2. or run_tests.sh provided by upstream
 
 ```
 
