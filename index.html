@@ -381,30 +381,6 @@ class: middle
 ---
 class: middle
 
-## Continuous Integration
-
-* Phase1
-
-Install packages from update YAML on the snapshot image with
-the all-in-one OpenStack installation, starts services and runs
-Tempest smoketest. Tests basic package sanity and upgrade.
-
-* Phase2
-
-Runs from-the-scratch all-in-one installation with all the packages
-which passed Phase1. Tests package interaction among queued updates.
-
-  + stage daily jobs and on-demand before pushing queued updates list
-  +  production daily job to catch regressions in dependency changes
-
-=> Moved to ci.centos.org
-
-* [Repository level testing from Cloud SIG](https://ci.centos.org/job/cloud-sig-validate-packstack-rdo-kilo-testing_tag/)
-
-
----
-class: middle
-
 ## Back to the future !
 
 <img src="img/delorean.jpg" width="80%" />
@@ -412,18 +388,89 @@ class: middle
 ---
 class: middle
 
-## Delorean
+## DLRN
 
-Tracks upstream master (currently Liberty) and stable branches now.
+DLRN is a Continuous Delivery platform that take every upstream commit and build it as a
+consumable package for CI purpose.
 
-Breaks when upstream change requires packaging changes and alerts package owners as defined in [rdoinfo](https://github.com/redhat-openstack/rdoinfo)
-
-Going forward, all packaging changes will be done in Delorean packages first, and merged to stable packaging branches
-[How to add a package in RDO master](https://openstack.redhat.com/packaging/rdo-packaging.html#_how_to_add_a_new_package_to_rdo_master_packaging)
-[Delorean FAQ](https://etherpad.openstack.org/p/delorean-packages)
+```bash
++------------+    +---------+    +------------+    +-------------------+
+|            |    |         |    |            |    |                   |
+| New commit +----> current +----> consistent +----> current+passed+ci |
+|            |    |         |    |            |    |                   |
++------------+    +---------+    +-----^------+    +---------^---------+
+                                       |                     |
+                                       |                     |
+                                 +-----+------+    +---------+---------+
+                                 |   RDO CI   |    |    Upstream CI    |
+                                 +------------+    +-------------------+
+```
 
 ---
 class: middle
+
+## DLRN CI
+
+```bash
++------------+    +---------+    +------------+    +-------------------+
+|            |    |         |    |            |    |                   |
+| New commit +----> current +----> consistent +----> current+passed+ci |
+|            |    |         |    |            |    |                   |
++------------+    +---------+    +-----^------+    +---------^---------+
+                                       |                     |
+                                       |                     |
+                                 +-----+------+    +---------+---------+
+                                 |   RDO CI   |    |    Upstream CI    |
+                                 +------------+    +-------------------+
+```
+
+* master: every commit or almost is built
+* consistent: set of packages without build failures
+* current-passed-ci: snapshot that passed CI
+* stable releases: packages from upstream tagged tarballs + sanity checks
+
+* RDO CI targets consistent snapshots
+* Upstream CI projects targets current-passed-ci (e.g. packstack, tripleO, kolla, puppet)
+
+
+---
+class: middle
+
+## WeiRDO
+
+* Ansible-based framework using gate jobs and make them usable outside upstream gates
+* Goal is to improve coverage upon what upstream provides.
+
+```bash
+                       +-------------+      +------------------------+   +----------------+
+                       |             |      |                        |   |                |
+           WeIRDO      |  Provision  |      |  Install dependencies  |   |  run_tests.sh  |
+       (with Ansible)  |  test node  +------>   & patch assumptions  +--->     or tox     |
+                       |             |      |                        |   |                |
+                       +-------------+      +------------------------+   +----------------+
+
+
+                       +----------------+   +---------------------+      +-----------------+
+                       |                |   |                     |      |                 |
+ run_tests.sh or tox   |    Install     |   |  Install/Configure  |      |      Test       |
+(provided by project)  |  dependencies  +--->      OpenStack      +------>  (ex: Tempest)  |
+                       |                |   |                     |      |                 |
+                       +----------------+   +---------------------+      +-----------------+
+
+
+                       +----------------+   +-------------+
+                       |                |   |             |
+           WeIRDO      |  Recover logs  |   |   Destroy   |
+       (with Ansible)  |   and results  +--->  test node  |
+                       |                |   |             |
+                       +----------------+   +-------------+
+
+```
+
+[WeiRDO documentation](http://weirdo.readthedocs.org/en/latest/)
+[WeiRDO jobs on ci.centos.org](https://ci.centos.org/view/rdo/)
+
+--- class: middle
 
 ## rdopkg: swiss army knife for RDO packaging
 
