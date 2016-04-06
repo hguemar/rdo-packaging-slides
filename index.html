@@ -244,7 +244,7 @@ class: middle
 * Leverage OpenStack API
 * Formerly known downstream as RDO Manager
 
-![](img/rdo-manager-logo.png)
+<img src="img/tripleo_owl.svg" width="60%" />
 
 [TripleO documentation](https://repos.fedorapeople.org/repos/openstack-m/docs/master/)
 
@@ -253,7 +253,7 @@ class: middle
 ---
 class: middle
 
-## What's Triple O ?
+## What's TripleO ?
 
 * Undercloud (management node)
 * Overcloud (deployed cloud)
@@ -343,7 +343,7 @@ Dependencies:
 ---
 class: middle, inverse, center
 
-# The Setup
+# RDO Infrastructure
 
 ---
 class: middle
@@ -365,7 +365,7 @@ class: middle
 ## Buildsystem Setup
 
 * RDO trunk builds are available for Fedora and EL7 through DLRN
-* RDO for Enterprise Linux is built in CBS and is self-contained
+* RDO for Enterprise Linux is built in Centos Community Build System and is self-contained
 
 ---
 class: middle
@@ -484,14 +484,14 @@ WeIRDO   | Recover logs  |   |  Destroy   |
 ---
 class: middle, center, inverse
 
-# RDO Status
+# RDO Community Status
 
 ---
 class: middle
 
 ## Opening up the technical governance
 
-* Public infrastructure => reviewing system, CI
+* Public infrastructure => reviewing system, CI (ci.centos.org)
 * Weekly IRC meetings on freenode ([agenda](https://etherpad.openstack.org/p/RDO-Meeting))
 * Creation of RDO Eng. team to support and foster contributions (ping apevec or hguemar to get
 started!)
@@ -597,17 +597,6 @@ class: middle
 ---
 class: middle
 
-## Khaleesi
-
-* Ansible framework to setup OpenStack test environment
-* Used by RDO and RHOSP CI
-* Rewritten to be reusable by everyone
-
-[Khaleesi](https://github.com/redhat-openstack/khaleesi)
-
----
-class: middle
-
 ## Trystack
 
 * Public RDO cloud available to try out OpenStack (backed by the Foundation)
@@ -632,7 +621,7 @@ class: middle
 
 ## RDO packaging documentation
 
-[documentation](https://openstack.redhat.com/packaging/rdo-packaging.html)
+[documentation](https://openstack.redhat.com/documentation/packaging)
 
 [sources](http://github.com/redhat-openstack) <= Pull Requests are welcome!
 
