@@ -293,11 +293,11 @@ class: middle
 * incompatible Folsom update in October 2012 [2] sparked conversations
 leading to the creation of RDO [3]
 * RDO started with Grizzly in April 2013
-* Since september, 2014 RDO is part of the CentOS Cloud SIG
+* Since September, 2014 RDO is part of the CentOS Cloud SIG
 
 [1]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-5719
 [2]: https://admin.fedoraproject.org/updates/FEDORA-EPEL-2012-13088
-[3]: https://openstack.redhat.com/
+[3]: https://rdoproject.org/
 
 
 ---
@@ -357,8 +357,8 @@ class: middle
   + rpm-master => DLRN (Newton)
   + rpm-mitaka => DLRN (Mitaka)
   + rpm-liberty => DLRN (Liberty)
-  + rdo-mitaka => CentOS/RHEL (Mitaka)
-  + rdo-liberty => CentOS/RHEL (Liberty)
+  + mitaka-rdo => CentOS/RHEL (Mitaka)
+  + liberty-rdo => CentOS/RHEL (Liberty)
 * Same spec is used to be built on multiple targets
 
 ---
@@ -367,7 +367,7 @@ class: middle
 ## Buildsystem Setup
 
 * RDO trunk builds are available for Fedora and EL7 through DLRN
-* RDO for Enterprise Linux is built in Centos Community Build System and is self-contained
+* RDO for Enterprise Linux is built in CentOS Community Build System and is self-contained
 
 ---
 class: middle
@@ -608,9 +608,9 @@ class: middle
 
 ## RDO packaging documentation
 
-[documentation](https://openstack.redhat.com/documentation/packaging)
+[documentation](https://rdoproject.org/documentation/packaging)
 
-[sources](http://github.com/redhat-openstack) <= Pull Requests are welcome!
+[sources](https://review.gerrithub.io/#/admin/projects/?filter=openstack-packages) <= Gerrit reviews are welcome!
 
 ---
 class: middle
